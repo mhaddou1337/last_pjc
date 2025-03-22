@@ -6,7 +6,7 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 00:50:25 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/19 03:38:31 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/22 01:01:29 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@
 
 # define HEI 800
 # define WID 800
-# define ITERATION 50
+# define ITERATION 10
 # define ESCAPE_VALUER 4
 # define ADD_ITERATION 10
 # define SHIFT 0.01
-# define ZOOM 1.2
+# define ZOOM 1.1
+
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
 
 typedef struct	t_img 
 {
@@ -105,7 +108,7 @@ void			julia_pix(int r, int i, t_init *data);
 void			mandelbrot_pix(int r, int i, t_init *data);
 
 void			conx_handler(t_init *conx, int code);
-int				hook_handler(int XK, t_init *data);
+int				key_handler(int CODE, t_init *data);
 char			*ft_strjoin(const char *s1, const char *s2);
 void			*ft_memcpy(void *dest, const void *src, size_t n);
 double			scale_number(double x, double x_max, double y_min,
@@ -113,5 +116,5 @@ double			scale_number(double x, double x_max, double y_min,
 
 int				ft_close(t_init *conx);
 void			tricorn_pix(int r, int i, t_init *data);
-
+int mouse_handler(int code, int i, int r, t_init *data);
 #endif

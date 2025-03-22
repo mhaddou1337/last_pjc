@@ -6,23 +6,32 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 00:50:10 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/19 01:44:25 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/22 03:19:37 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	mandelbrot_pix(int r, int i, t_init *data)
+void imt(int iter_nbr, t_init *data, int r , int i)
 {
-	int		color;
+	
+	int	offset;
+
+	offset = (i * data->image.line_length) + (r * (data->image.bits_per_pixel / 8));
+	*(unsigned int *)(data->image.addr+ offset) = scale_number(iter_nbr, data->iteration, 0,
+		0x00FF00);
+	
+}
+void	mandelbrot_pix(int i, int r, t_init *data)
+{
 	int		iter_nbr;
 	double	temp;
 
 	iter_nbr = -1;
 	data->z.i = 0.0;
 	data->z.r = 0.0;
-	data->c.r = scale_number(r, HEI, -2, 2) * data->zoom + data->shift_r;
-	data->c.i = scale_number(i, WID, -2, 2) * data->zoom + data->shift_i;
+	data->c.r = scale_number(r, WID, -2.0 / data->zoom + data->shift_r, 2.0 / data->zoom + data->shift_r);
+	data->c.i = scale_number(i, HEI, -2.0 / data->zoom + data->shift_i, 2.0 / data->zoom + data->shift_i);
 	while (++iter_nbr < data->iteration)
 	{
 		temp = (data->z.r * data->z.r) - (data->z.i * data->z.i);
@@ -31,13 +40,9 @@ void	mandelbrot_pix(int r, int i, t_init *data)
 		data->z.r += data->c.r;
 		data->z.i += data->c.i;
 		if ((data->z.r * data->z.r + data->z.i * data->z.i) > ESCAPE_VALUER)
-		{
-			color = 0;
-			mlx_pixel_put(data->mlx_conx, data->mlx_window, r, i, color);
-			return ;
-		}
+			return(imt(iter_nbr, data, r , i));
 	}
-	mlx_pixel_put(data->mlx_conx, data->mlx_window, r, i, rgb(0, 167, 3));
+	imt(iter_nbr, data, r , i);
 }
 
 void	tricorn_pix(int r, int i, t_init *data)
@@ -49,8 +54,10 @@ void	tricorn_pix(int r, int i, t_init *data)
 	iter_nbr = -1;
 	data->z.i = 0.0;
 	data->z.r = 0.0;
-	data->c.r = scale_number(r, HEI, -2, 2) * data->zoom + data->shift_r;
-	data->c.i = scale_number(i, WID, -2, 2) * data->zoom + data->shift_i;
+	data->c.r = scale_number(r, WID, -2.0 / data->zoom + data->shift_r, 
+		2.0 / data->zoom + data->shift_r);
+	data->c.i = scale_number(i, HEI, -2.0 / data->zoom + data->shift_i, 
+		2.0 / data->zoom + data->shift_i);
 	while (++iter_nbr < data->iteration)
 	{
 		temp = (data->z.r * data->z.r) - (data->z.i * data->z.i);
@@ -59,14 +66,9 @@ void	tricorn_pix(int r, int i, t_init *data)
 		data->z.r += data->c.r;
 		data->z.i += data->c.i;
 		if ((data->z.r * data->z.r + data->z.i * data->z.i) > ESCAPE_VALUER)
-		{
-			color = scale_number(iter_nbr, data->iteration, rgb(14, 14, 14),
-					rgb(67, 167, 27));
-			mlx_pixel_put(data->mlx_conx, data->mlx_window, r, i, color);
-			return ;
-		}
+			return(imt(iter_nbr, data, r , i));
 	}
-	mlx_pixel_put(data->mlx_conx, data->mlx_window, r, i, rgb(167, 164, 0));
+	imt(iter_nbr, data, r , i);
 }
 
 void	julia_pix(int r, int i, t_init *data)
@@ -76,10 +78,13 @@ void	julia_pix(int r, int i, t_init *data)
 	double	temp;
 
 	iter_nbr = -1;
-	data->z.r = scale_number(r, HEI, -2, 2) * data->zoom + data->shift_r;
-	data->z.i = scale_number(i, WID, -2, 2) * data->zoom + data->shift_i;
+	data->z.r = scale_number(r, WID, -2.0 / data->zoom + data->shift_r, 
+		2.0 / data->zoom + data->shift_r);
+	data->z.i = scale_number(i, HEI, -2.0 / data->zoom + data->shift_i, 
+		2.0 / data->zoom + data->shift_i);
 	data->c.r = data->julia_r;
 	data->c.i = data->julia_i;
+	
 	while (++iter_nbr < data->iteration)
 	{
 		temp = (data->z.r * data->z.r) - (data->z.i * data->z.i);
@@ -88,17 +93,12 @@ void	julia_pix(int r, int i, t_init *data)
 		data->z.r += data->c.r;
 		data->z.i += data->c.i;
 		if ((data->z.r * data->z.r + data->z.i * data->z.i) > ESCAPE_VALUER)
-		{
-			color = scale_number(iter_nbr, data->iteration, rgb(14, 14, 14),
-					rgb(67, 167, 27));
-			mlx_pixel_put(data->mlx_conx, data->mlx_window, r, i, color);
-			return ;
-		}
+			return(imt(iter_nbr, data, r , i));
 	}
-	mlx_pixel_put(data->mlx_conx, data->mlx_window, r, i, rgb(255, 145, 0));
+	imt(iter_nbr, data, r , i);
 }
 
-void	fractol_draw(t_init *data, void (*fractol_pix)(int r, int i, t_init *data))
+void	fractol_draw(t_init *data, void (fractol_pix)(int r, int i, t_init *data))
 {
 	int	r;
 	int	i;
@@ -114,4 +114,5 @@ void	fractol_draw(t_init *data, void (*fractol_pix)(int r, int i, t_init *data))
 		}
 		r++;
 	}
+	mlx_put_image_to_window(data->mlx_conx, data->mlx_window, data->image.img, 0, 0);
 }

@@ -52,23 +52,24 @@ int	is_white_space(int c)
 void	print_error(int code)
 {
 	if (code == 0)
-		ft_putstr_fd("No arguments\nplease use one of those fractals :\n", 2);
-	if (code == 1)
+	{
+		ft_putstr_fd("No arguments\n", 2);
+		ft_putstr_fd("Please use one of these fractals: Tricorn,", 2);
+		ft_putstr_fd("Julia, Mandelbrot\n", 2);
+		ft_putstr_fd("For Julia set, your variables are Imaginary and Real\n",
+			2);
+	}
+	else if (code == 1)
 	{
 		ft_putstr_fd("How to use\n", 2);
-		exit(1);
 	}
-	if (code == 2)
+	else if (code == 3)
 	{
-		exit(1);
+		ft_putstr_fd("Error with parameters:\n", 2);
+		ft_putstr_fd("Julia should be Imaginary and Real ",2);
+		ft_putstr_fd("(e.g. +0.2, -1.5)\n\n", 2);
+		ft_putstr_fd("Example: ./fractol Julia 0.285 0.01\n", 2);
+		ft_putstr_fd("Valid number format: [+|-]d.d or [+|-]d,d\n\n", 2);
 	}
-	if (code == 3)
-	{
-		ft_putstr_fd("error with paramiters", 2);
-		exit(1);
-	}
-	if (code == 4)
-	{
-		exit(1);
-	}
+	exit(1);
 }

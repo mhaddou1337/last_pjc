@@ -77,7 +77,7 @@ void	conx_handler(t_init *data, int code)
 		free(data->prog_name);
 		exit(0);
 	}
-	if(code == 3)
+	if (code == 3)
 	{
 		mlx_destroy_image(data->mlx_conx, data->image.img);
 		mlx_destroy_window(data->mlx_conx, data->mlx_window);
@@ -86,7 +86,7 @@ void	conx_handler(t_init *data, int code)
 		free(data->prog_name);
 		exit(0);
 	}
-		exit(1);
+	exit(1);
 }
 
 void	init_data(t_init *data)
@@ -97,18 +97,22 @@ void	init_data(t_init *data)
 	data->prog_name = ft_strjoin("fractol: ", data->f_name);
 	if (!data->prog_name)
 		conx_handler(data, 1);
-	data->mlx_window = mlx_new_window(data->mlx_conx, HEI, WID, data->prog_name);
+	data->mlx_window = mlx_new_window(data->mlx_conx, HEI, WID,
+			data->prog_name);
 	if (!data->mlx_window)
 		conx_handler(data, 2);
 	data->image.img = mlx_new_image(data->mlx_conx, HEI, WID);
-	if(!data->image.img)
+	if (!data->image.img)
 	{
 		mlx_destroy_window(data->mlx_conx, data->mlx_window);
 		conx_handler(data, 2);
 	}
-	data->image.addr = mlx_get_data_addr(data->image.img, &data->image.bits_per_pixel, &data->image.line_length, &data->image.endian);
+	data->image.addr = mlx_get_data_addr(data->image.img,
+			&data->image.bits_per_pixel, &data->image.line_length,
+			&data->image.endian);
 	data->iteration = ITERATION;
 	data->shift_i = 0;
 	data->shift_r = 0;
 	data->zoom = 1;
+	data->shift_color = 1;
 }

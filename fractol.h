@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-#define M_PI 3.14159265358979323846
+
 # define HEI 800
 # define WID 800
 # define ITERATION 80
@@ -32,7 +32,7 @@
 
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
-
+# define COLOR_SHIFT 0
 typedef struct	t_img 
 {
 	void	*img;
@@ -79,6 +79,7 @@ typedef struct t_init
 	t_complex	z;
 	t_complex	c;
 	t_img image;
+	int shift_color;
 }				t_init;
 
 char			*str_re_build(char *str);
@@ -92,7 +93,6 @@ void			print_error(int code);
 int				is_comma_or_dot(int c);
 int				is_sig(int c);
 int				is_scd(int c);
-int				rgb(int red, int green, int blue);
 void			ft_tricorn(char *fractol_name);
 void			ft_mandelbrot(char *fractol_name);
 int				ft_isdigit(int c);

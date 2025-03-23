@@ -12,9 +12,9 @@
 
 #include "fractol.h"
 
-void *ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	if (!dest && !src)
 	{
@@ -30,9 +30,9 @@ void *ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char *ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char *str;
+	char	*str;
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -46,9 +46,7 @@ char *ft_strjoin(const char *s1, const char *s2)
 	return (NULL);
 }
 
-
-
-int key_handler(int code, t_init *data)
+int	key_handler(int code, t_init *data)
 {
 	if (code == XK_Escape)
 		conx_handler(data, 3);
@@ -64,29 +62,33 @@ int key_handler(int code, t_init *data)
 		fractol_draw((data->iteration += ADD_ITERATION, data), data->function);
 	else if (code == XK_KP_Subtract)
 		fractol_draw((data->iteration -= ADD_ITERATION, data), data->function);
+	else if (code == XK_Shift_L)
+		fractol_draw((data->shift_color -= 1, data), data->function);
+	else if (code == XK_Shift_R)
+		fractol_draw((data->shift_color += 1, data), data->function);
 	return (0);
 }
-int mouse_handler(int code, int r, int i, t_init *data)
+
+int	mouse_handler(int code, int r, int i, t_init *data)
 {
-    double mouse_r;
-    double mouse_i;
+	double	mouse_r;
+	double	mouse_i;
 
-    mouse_r = scale_number(r, WID, -2.0 / data->zoom + data->shift_r, 
-                         2.0 / data->zoom + data->shift_r);
-    mouse_i = scale_number(i, HEI, -2.0 / data->zoom + data->shift_i, 
-                         2.0 / data->zoom + data->shift_i);
-
-    if (code == SCROLL_UP)
-    {
-        data->zoom *= ZOOM;
-        data->shift_r += (mouse_r - data->shift_r) * (ZOOM-1);
-        data->shift_i += (mouse_i - data->shift_i) * (ZOOM-1);
-    }
-    else if (code == SCROLL_DOWN)
-    {
-        data->zoom /= ZOOM;
-        data->shift_r -= (mouse_r - data->shift_r) * (ZOOM-1);
-        data->shift_i -= (mouse_i - data->shift_i) * (ZOOM-1);
-    }
-    return ((fractol_draw(data, data->function),0));
+	mouse_r = scale_number(r, WID, -2.0 / data->zoom + data->shift_r, 2.0
+			/ data->zoom + data->shift_r);
+	mouse_i = scale_number(i, HEI, -2.0 / data->zoom + data->shift_i, 2.0
+			/ data->zoom + data->shift_i);
+	if (code == SCROLL_UP)
+	{
+		data->zoom *= ZOOM;
+		data->shift_r += (mouse_r - data->shift_r) * (ZOOM - 1);
+		data->shift_i += (mouse_i - data->shift_i) * (ZOOM - 1);
+	}
+	else if (code == SCROLL_DOWN)
+	{
+		data->zoom /= ZOOM;
+		data->shift_r -= (mouse_r - data->shift_r) * (ZOOM - 1);
+		data->shift_i -= (mouse_i - data->shift_i) * (ZOOM - 1);
+	}
+	return ((fractol_draw(data, data->function), 0));
 }

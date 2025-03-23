@@ -15,7 +15,7 @@
 char	*str_re_build(char *str)
 {
 	static t_rebuild	data;
-	char			*new_str;
+	char				*new_str;
 
 	while (str[data.i])
 	{

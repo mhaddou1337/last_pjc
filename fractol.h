@@ -6,7 +6,7 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 00:50:25 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/22 01:01:29 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/22 22:35:53 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-
+#define M_PI 3.14159265358979323846
 # define HEI 800
 # define WID 800
-# define ITERATION 10
+# define ITERATION 80
 # define ESCAPE_VALUER 4
 # define ADD_ITERATION 10
 # define SHIFT 0.01

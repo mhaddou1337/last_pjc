@@ -6,7 +6,7 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 02:02:59 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/22 03:01:23 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/23 00:09:20 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ char *ft_strjoin(const char *s1, const char *s2)
 	return (NULL);
 }
 
-int rgb(int red, int green, int blue)
-{
-	return (red * 256 * 256 + green * 256 + blue);
-}
+
 
 int key_handler(int code, t_init *data)
 {
@@ -71,27 +68,25 @@ int key_handler(int code, t_init *data)
 }
 int mouse_handler(int code, int r, int i, t_init *data)
 {
-    double mouse_re;
-    double mouse_im;
+    double mouse_r;
+    double mouse_i;
 
-    mouse_re = scale_number(r, WID, -2.0 / data->zoom + data->shift_r, 
+    mouse_r = scale_number(r, WID, -2.0 / data->zoom + data->shift_r, 
                          2.0 / data->zoom + data->shift_r);
-    mouse_im = scale_number(i, HEI, -2.0 / data->zoom + data->shift_i, 
+    mouse_i = scale_number(i, HEI, -2.0 / data->zoom + data->shift_i, 
                          2.0 / data->zoom + data->shift_i);
 
     if (code == SCROLL_UP)
     {
-        data->zoom *= 1.1;
-        data->shift_r += (mouse_re - data->shift_r) * 0.1;
-        data->shift_i += (mouse_im - data->shift_i) * 0.1;
+        data->zoom *= ZOOM;
+        data->shift_r += (mouse_r - data->shift_r) * (ZOOM-1);
+        data->shift_i += (mouse_i - data->shift_i) * (ZOOM-1);
     }
     else if (code == SCROLL_DOWN)
     {
-        data->zoom /= 1.1;
-        data->shift_r -= (mouse_re - data->shift_r) * 0.1;
-        data->shift_i -= (mouse_im - data->shift_i) * 0.1;
+        data->zoom /= ZOOM;
+        data->shift_r -= (mouse_r - data->shift_r) * (ZOOM-1);
+        data->shift_i -= (mouse_i - data->shift_i) * (ZOOM-1);
     }
-    
-    fractol_draw(data, data->function);
-    return (0);
+    return ((fractol_draw(data, data->function),0));
 }

@@ -6,7 +6,7 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 00:50:33 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/21 22:37:23 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/23 20:24:12 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void ft_julia(char *fractol_name,char **av)
     data.julia_i = atod(av[3]);
     data.function = *julia_pix;
     init_data(&data);
-    fractol_draw(&data , julia_pix);
     mlx_hook(data.mlx_window, 17, 0, ft_close, &data);
     mlx_hook(data.mlx_window, 2, 1,key_handler,&data); 
     mlx_mouse_hook(data.mlx_window, mouse_handler, &data);
+    fractol_draw(&data , julia_pix);
     mlx_loop(data.mlx_conx);
 }

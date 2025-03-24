@@ -6,7 +6,7 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 00:50:25 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/22 22:35:53 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/23 21:32:05 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 # define COLOR_SHIFT 0
-typedef struct	t_img 
+
+typedef struct t_img
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 }				t_img;
 
 typedef struct t_input_checker
@@ -78,8 +79,8 @@ typedef struct t_init
 	void		*function;
 	t_complex	z;
 	t_complex	c;
-	t_img image;
-	int shift_color;
+	t_img		image;
+	int			shift_color;
 }				t_init;
 
 char			*str_re_build(char *str);
@@ -93,7 +94,6 @@ void			print_error(int code);
 int				is_comma_or_dot(int c);
 int				is_sig(int c);
 int				is_scd(int c);
-void			ft_tricorn(char *fractol_name);
 void			ft_mandelbrot(char *fractol_name);
 int				ft_isdigit(int c);
 void			checker(char *str, t_input_checker data);
@@ -115,6 +115,6 @@ double			scale_number(double x, double x_max, double y_min,
 					double y_max);
 
 int				ft_close(t_init *conx);
-void			tricorn_pix(int r, int i, t_init *data);
-int mouse_handler(int code, int i, int r, t_init *data);
+int				mouse_handler(int code, int i, int r, t_init *data);
+int				set_pixel_color(int iteration, t_init *data);
 #endif

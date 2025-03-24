@@ -6,7 +6,7 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:28:25 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/23 00:21:52 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/23 20:23:24 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void ft_mandelbrot(char *fractol_name)
     t_init data;
     data.f_name = "mandelbrot";
 	data.function = &mandelbrot_pix;
-
+    
     init_data(&data);
     mlx_hook(data.mlx_window, 17, 0, ft_close, &data);
     mlx_hook(data.mlx_window, 2, 1,key_handler,&data);
-    fractol_draw(&data , mandelbrot_pix);
 	mlx_mouse_hook(data.mlx_window, mouse_handler, &data);
+    fractol_draw(&data , mandelbrot_pix);
     mlx_loop(data.mlx_conx);
 }

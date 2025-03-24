@@ -6,7 +6,7 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:28:07 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/18 03:43:12 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/23 21:11:57 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	print_error(int code)
 	if (code == 0)
 	{
 		ft_putstr_fd("No arguments\n", 2);
-		ft_putstr_fd("Please use one of these fractals: Tricorn,", 2);
+		ft_putstr_fd("Please use one of these fractals:", 2);
 		ft_putstr_fd("Julia, Mandelbrot\n", 2);
 		ft_putstr_fd("For Julia set, your variables are Imaginary and Real\n",
 			2);
@@ -62,11 +62,15 @@ void	print_error(int code)
 	else if (code == 1)
 	{
 		ft_putstr_fd("How to use\n", 2);
+		ft_putstr_fd("Please use one of these fractals:", 2);
+		ft_putstr_fd("Julia, Mandelbrot\n", 2);
+		ft_putstr_fd("For Julia set, your variables are Imaginary and Real\n",
+			2);
 	}
 	else if (code == 3)
 	{
 		ft_putstr_fd("Error with parameters:\n", 2);
-		ft_putstr_fd("Julia should be Imaginary and Real ",2);
+		ft_putstr_fd("Julia should be Imaginary and Real ", 2);
 		ft_putstr_fd("(e.g. +0.2, -1.5)\n\n", 2);
 		ft_putstr_fd("Example: ./fractol Julia 0.285 0.01\n", 2);
 		ft_putstr_fd("Valid number format: [+|-]d.d or [+|-]d,d\n\n", 2);

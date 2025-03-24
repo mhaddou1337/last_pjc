@@ -6,14 +6,14 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 00:50:25 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/23 21:32:05 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/23 20:48:39 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FRACTOL_BONUS_H
+# define FRACTOL_BONUS_H
 
-#include <mlx.h>
+# include <mlx.h>
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdbool.h>
@@ -94,6 +94,7 @@ void			print_error(int code);
 int				is_comma_or_dot(int c);
 int				is_sig(int c);
 int				is_scd(int c);
+void			ft_tricorn(char *fractol_name);
 void			ft_mandelbrot(char *fractol_name);
 int				ft_isdigit(int c);
 void			checker(char *str, t_input_checker data);
@@ -115,7 +116,7 @@ double			scale_number(double x, double x_max, double y_min,
 					double y_max);
 
 int				ft_close(t_init *conx);
+void			tricorn_pix(int r, int i, t_init *data);
 int				mouse_handler(int code, int i, int r, t_init *data);
 int				set_pixel_color(int iteration, t_init *data);
-
 #endif

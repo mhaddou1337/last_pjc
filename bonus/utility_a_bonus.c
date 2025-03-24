@@ -6,11 +6,11 @@
 /*   By: mhaddou <mhaddou@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:27:44 by mhaddou           #+#    #+#             */
-/*   Updated: 2025/03/19 03:38:16 by mhaddou          ###   ########.fr       */
+/*   Updated: 2025/03/23 22:51:27 by mhaddou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 int	ft_tolower(int c)
 {

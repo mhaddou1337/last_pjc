@@ -1,1 +1,0 @@
-gcc *.c libmlx.a -lm -Imlx_linux -lXext -lX11 -o fractol -Wall -Wextra -Werror
